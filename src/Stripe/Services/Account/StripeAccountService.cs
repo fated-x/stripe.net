@@ -1,16 +1,24 @@
 ﻿namespace Stripe
 {
-    public class StripeAccountService : StripeService
+  public class StripeAccountService : StripeService
+  {
+    public StripeAccountService(string apiKey = null) : base(apiKey) { }
+
+    public virtual StripeAccount Get(StripeRequestOptions requestOptions = null)
     {
-        public StripeAccountService(string apiKey = null) : base(apiKey) { }
+      requestOptions = SetupRequestOptions(requestOptions);
+      var response = Requestor.GetString(Urls.Account, requestOptions);
 
-        public virtual StripeAccount Get(StripeRequestOptions requestOptions = null)
-        {
-            requestOptions = SetupRequestOptions(requestOptions);
-
-            var response = Requestor.GetString(Urls.Account, requestOptions);
-
-            return Mapper<StripeAccount>.MapFromJson(response);
-        }
+      return Mapper<StripeAccount>.MapFromJson(response);
     }
+
+    public virtual StripeAccount Create(StripeAccountCreateOptions createOptions, StripeRequestOptions requestOptions = null)
+    {
+      requestOptions = SetupRequestOptions(requestOptions);
+      var url = this.ApplyAllParameters(createOptions, Urls.Account, false);
+      var response = Requestor.PostString(url, requestOptions);
+
+      return Mapper<StripeAccount>.MapFromJson(response);
+    }
+  }
 }

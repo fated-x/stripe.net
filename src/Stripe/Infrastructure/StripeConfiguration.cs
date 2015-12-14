@@ -1,31 +1,30 @@
-﻿using System;
-using System.Configuration;
+﻿using System.Configuration;
 
 namespace Stripe
 {
-    public static class StripeConfiguration
+  public static class StripeConfiguration
+  {
+    private static string _apiKey;
+    internal const string SupportedApiVersion = "2014-08-20"; // "2015-02-18";
+
+    static StripeConfiguration()
     {
-        private static string _apiKey;
-        internal const string SupportedApiVersion = "2015-02-18";
-
-        static StripeConfiguration()
-        {
-            ApiVersion = SupportedApiVersion;
-        }
-
-        internal static string GetApiKey()
-        {
-            if (string.IsNullOrEmpty(_apiKey))
-                _apiKey = ConfigurationManager.AppSettings["StripeApiKey"];
-
-            return _apiKey;
-        }
-
-        public static void SetApiKey(string newApiKey)
-        {
-            _apiKey = newApiKey;
-        }
-
-        public static string ApiVersion { get; internal set; }
+      ApiVersion = SupportedApiVersion;
     }
+
+    internal static string GetApiKey()
+    {
+      if (string.IsNullOrEmpty(_apiKey))
+        _apiKey = ConfigurationManager.AppSettings["StripeApiKey"];
+
+      return _apiKey;
+    }
+
+    public static void SetApiKey(string newApiKey)
+    {
+      _apiKey = newApiKey;
+    }
+
+    public static string ApiVersion { get; internal set; }
+  }
 }
