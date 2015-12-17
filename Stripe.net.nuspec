@@ -13,7 +13,7 @@
     <description>Stripe.net is a full service .net api for http://stripe.com. For documentation, visit https://github.com/jaymedavis/stripe.net.</description>
     <tags>stripe, payment, credit cards, money</tags>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="7.0.1" />
+      <dependency id="Newtonsoft.Json" version="6.0.1" />
     </dependencies>
   </metadata>
   <files>

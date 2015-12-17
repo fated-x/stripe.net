@@ -6,13 +6,13 @@ namespace Stripe.Entities
   public class StripeExternalAccount
   {
     [JsonProperty("id")]
-    public string ExternalAccountId { get; set; }
+    public string ExternalBankAccountId { get; set; }
 
     [JsonProperty("object")]
     public string Object { get; set; }
 
     [JsonProperty("account")]
-    public string Account { get; set; }
+    public string AccountId { get; set; }
 
     [JsonProperty("bank_name")]
     public string BankName { get; set; }

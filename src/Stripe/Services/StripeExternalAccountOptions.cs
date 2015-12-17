@@ -13,7 +13,7 @@ namespace Stripe
     public string Object { get; set; }
 
     [JsonProperty("external_account[account_number]")]
-    public string AccountNumber { get; set; }
+    public string AccountId { get; set; }
 
     [JsonProperty("external_account[country]")]
     public string Country { get; set; }

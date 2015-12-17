@@ -69,7 +69,7 @@
 
         public static string Account
         {
-            get { return BaseUrl + "/account"; }
+            get { return BaseUrl + "/accounts"; }
         }
 
         public static string Recipients
