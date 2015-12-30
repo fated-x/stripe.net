@@ -12,6 +12,18 @@
       return Mapper<StripeAccount>.MapFromJson(response);
     }
 
+    public virtual StripeAccount Get(string accountId, StripeRequestOptions requestOptions = null)
+    {
+      requestOptions = SetupRequestOptions(requestOptions);
+
+      var url = $"{Urls.Account}/{accountId}";
+      url = this.ApplyAllParameters(null, url, false);
+
+      var response = Requestor.GetString(url, requestOptions);
+
+      return Mapper<StripeAccount>.MapFromJson(response);
+    }
+
     public virtual StripeAccount Create(StripeAccountCreateOptions createOptions, StripeRequestOptions requestOptions = null)
     {
       requestOptions = SetupRequestOptions(requestOptions);

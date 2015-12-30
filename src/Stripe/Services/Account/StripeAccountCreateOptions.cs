@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Newtonsoft.Json;
-using Stripe.Services;
 
 namespace Stripe
 {
@@ -39,6 +38,9 @@ namespace Stripe
     [JsonProperty("external_account")]
     public StripeExternalAccountOptions ExternalAccount { get; set; }
 
+    [JsonProperty("legal_entity")]
+    public StripeLegalEntityOptions LegalEntity { get; set; }
+
     [JsonProperty("metadata")]
     public Dictionary<string, string> Metadata { get; set; }
 
@@ -60,9 +62,7 @@ namespace Stripe
     [JsonProperty("tos_acceptance")]
     public StripeTosAcceptanceOptions ToSAcceptance { get; set; }
 
-    [JsonProperty("external_account[transfer_schedule]")]
+    [JsonProperty("transfer_schedule")]
     public StripeTransferScheduleOptions TransferSchedule { get; set; }
-
-    // TODO: LegalEntity ("legal_entity")
   }
 }

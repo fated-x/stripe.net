@@ -25,6 +25,6 @@ namespace Stripe.Tests
         };
 
         It should_have_the_correct_amount_refunded = () =>
-            _stripeCharge.AmountRefunded.ShouldEqual(250);
+            _stripeCharge.AmountRefundedInCents.ShouldEqual(250);
     }
 }

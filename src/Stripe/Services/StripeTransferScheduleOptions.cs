@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Stripe.Services
+namespace Stripe
 {
   public class StripeTransferScheduleOptions
   {

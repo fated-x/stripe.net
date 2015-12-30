@@ -25,6 +25,6 @@ namespace Stripe.Tests
             _stripeRefund.ChargeId.ShouldEqual(_createdStripeChargeId);
 
         It should_refund_full_amount = () =>
-            _stripeRefund.Amount.ShouldEqual(test_data.stripe_charge_create_options.ValidCard().Amount.Value);
+            _stripeRefund.AmountInCents.ShouldEqual(test_data.stripe_charge_create_options.ValidCard().Amount.Value);
     }
 }

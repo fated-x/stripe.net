@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using Stripe.Services;
+﻿using Newtonsoft.Json;
 
 namespace Stripe
 {

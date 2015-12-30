@@ -31,7 +31,7 @@ namespace Stripe.Tests
             _stripeRefund.ChargeId.ShouldEqual(_createdStripeChargeId);
 
         It should_refund_300 = () =>
-            _stripeRefund.Amount.ShouldEqual(300);
+            _stripeRefund.AmountInCents.ShouldEqual(300);
 
         It should_have_reason = () =>
             _stripeRefund.Reason.ShouldEqual(StripeRefundReasons.RequestedByCustomer);

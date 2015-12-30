@@ -6,7 +6,6 @@ using System.Web;
 using Newtonsoft.Json;
 using Stripe.Infrastructure;
 using System.Text.RegularExpressions;
-using Stripe.Services;
 
 namespace Stripe
 {
@@ -69,6 +68,11 @@ namespace Stripe
             {
               var stripeExternalAccountOptions = (StripeExternalAccountOptions)value;
               newUrl = ApplyNestedObjectProperties(newUrl, stripeExternalAccountOptions);
+            }
+            else if (property.PropertyType == typeof(StripeLegalEntityOptions))
+            {
+              var stripeLegalEntityOptions = (StripeLegalEntityOptions)value;
+              newUrl = ApplyNestedObjectProperties(newUrl, stripeLegalEntityOptions);
             }
             else if (property.PropertyType == typeof(StripeTosAcceptanceOptions))
             {
