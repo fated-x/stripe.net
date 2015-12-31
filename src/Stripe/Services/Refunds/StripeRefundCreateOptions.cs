@@ -6,7 +6,7 @@ namespace Stripe
     public class StripeRefundCreateOptions
     {
         [JsonProperty("amount")]
-        public int? Amount { get; set; }
+        public int? AmountInCents { get; set; }
 
         [JsonProperty("refund_application_fee")]
         public bool? RefundApplicationFee { get; set; }
