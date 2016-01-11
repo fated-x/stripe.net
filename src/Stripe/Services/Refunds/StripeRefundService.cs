@@ -7,6 +7,8 @@ namespace Stripe
     public StripeRefundService(string apiKey = null) : base(apiKey) { }
 
     public bool ExpandCharge { get; set; }
+    public bool ExpandCharge_ApplicationFee { get; set; }
+    public bool ExpandCharge_Refunds_Data_BalanceTransaction { get; set; }
     public bool ExpandBalanceTransaction { get; set; }
 
     public virtual StripeRefund Create(string chargeId, StripeRefundCreateOptions createOptions = null, StripeRequestOptions requestOptions = null)

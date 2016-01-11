@@ -10,6 +10,7 @@ namespace Stripe
     public bool ExpandBalanceTransaction { get; set; }
     public bool ExpandCustomer { get; set; }
     public bool ExpandInvoice { get; set; }
+    public bool ExpandRefunds_Data_BalanceTransaction { get; set; }
 
     public virtual StripeCharge Create(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null)
     {
@@ -62,7 +63,7 @@ namespace Stripe
     {
       requestOptions = SetupRequestOptions(requestOptions);
 
-      var url = string.Format("{0}/{1}/capture", Urls.Charges, chargeId);
+      var url = $"{Urls.Charges}/{chargeId}/capture";
       url = this.ApplyAllParameters(null, url, false);
 
       if (captureAmount.HasValue)

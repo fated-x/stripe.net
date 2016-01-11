@@ -20,7 +20,7 @@ namespace Stripe.Tests
 
         Because of = () =>
         {
-            new StripeRefundService().Create(_createdStripeChargeId, new StripeRefundCreateOptions { Amount = 250 });
+            new StripeRefundService().Create(_createdStripeChargeId, new StripeRefundCreateOptions { AmountInCents = 250 });
             _stripeCharge = _stripeChargeService.Get(_createdStripeChargeId);
         };
 

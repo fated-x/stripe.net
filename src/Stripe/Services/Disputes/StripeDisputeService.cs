@@ -1,25 +1,52 @@
-﻿namespace Stripe
+﻿using System.Collections.Generic;
+
+namespace Stripe
 {
-    public class StripeDisputeService : StripeService
+  public class StripeDisputeService : StripeService
+  {
+    public StripeDisputeService(string apiKey = null) : base(apiKey) { }
+
+    public bool ExpandCharge { get; set; }
+    public bool ExpandBalanceTransaction { get; set; }
+    public bool ExpandEvidence_CustomerCommunication { get; set; }
+    public bool ExpandEvidence_Receipt { get; set; }
+    public bool ExpandEvidence_ServiceDocumentation { get; set; }
+    public bool ExpandEvidence_UncategorizedFile { get; set; }
+
+    public virtual IEnumerable<StripeDispute> List(StripeRequestOptions requestOptions = null)
     {
-        public StripeDisputeService(string apiKey = null) : base(apiKey) { }
+      requestOptions = SetupRequestOptions(requestOptions);
 
-        public bool ExpandCharge { get; set; }
-        public bool ExpandBalanceTransaction { get; set; }
+      var url = Urls.Disputes;
+      url = this.ApplyAllParameters(null, url, true);
 
-        public virtual StripeDispute Update(string chargeId, string evidence = null, StripeRequestOptions requestOptions = null)
-        {
-            requestOptions = SetupRequestOptions(requestOptions);
+      var response = Requestor.GetString(url, requestOptions);
 
-            var url = string.Format("{0}/dispute", chargeId);
-            url = this.ApplyAllParameters(null, url, false);
-
-            if (!string.IsNullOrEmpty(evidence))
-                url = ParameterBuilder.ApplyParameterToUrl(url, "evidence", evidence);
-
-            var response = Requestor.PostString(url, requestOptions);
-
-            return Mapper<StripeDispute>.MapFromJson(response);
-        }
+      return Mapper<StripeDispute>.MapCollectionFromJson(response);
     }
+
+    public virtual StripeDispute Update(string disputeId, StripeDisputeUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
+    {
+      requestOptions = SetupRequestOptions(requestOptions);
+
+      var url = $"{Urls.Disputes}/{disputeId}";
+      url = this.ApplyAllParameters(updateOptions, url, false);
+
+      var response = Requestor.PostString(url, requestOptions);
+
+      return Mapper<StripeDispute>.MapFromJson(response);
+    }
+
+    public virtual StripeDispute Close(string disputeId, StripeRequestOptions requestOptions = null)
+    {
+      requestOptions = SetupRequestOptions(requestOptions);
+
+      var url = $"{Urls.Disputes}/{disputeId}/close";
+      url = this.ApplyAllParameters(null, url, false);
+
+      var response = Requestor.PostString(url, requestOptions);
+
+      return Mapper<StripeDispute>.MapFromJson(response);
+    }
+  }
 }

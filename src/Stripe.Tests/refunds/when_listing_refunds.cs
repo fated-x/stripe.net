@@ -22,7 +22,7 @@ namespace Stripe.Tests
 
             var refund = _stripeRefundService.Create(_createdStripeChargeId, new StripeRefundCreateOptions()
             {
-                Amount = 300,
+                AmountInCents = 300,
                 Reason = StripeRefundReasons.RequestedByCustomer,
                 Metadata = new Dictionary<string, string>() { { "key", "value" } }
             });
@@ -31,7 +31,7 @@ namespace Stripe.Tests
 
             refund = _stripeRefundService.Create(_createdStripeChargeId, new StripeRefundCreateOptions()
             {
-                Amount = 400,
+                AmountInCents = 400,
                 Reason = StripeRefundReasons.RequestedByCustomer,
                 Metadata = new Dictionary<string, string>() { { "key", "value" } }
             });

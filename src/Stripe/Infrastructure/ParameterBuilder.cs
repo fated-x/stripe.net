@@ -64,6 +64,11 @@ namespace Stripe
               var stripeSourceOptions = (StripeSourceOptions)value;
               newUrl = ApplyNestedObjectProperties(newUrl, stripeSourceOptions);
             }
+            else if (property.PropertyType == typeof(StripeEvidenceOptions))
+            {
+              var stripeEvidenceOptions = (StripeEvidenceOptions)value;
+              newUrl = ApplyNestedObjectProperties(newUrl, stripeEvidenceOptions);
+            }
             else if (property.PropertyType == typeof(StripeExternalAccountOptions))
             {
               var stripeExternalAccountOptions = (StripeExternalAccountOptions)value;
@@ -102,7 +107,7 @@ namespace Stripe
 
         foreach (var propertyName in propertiesToExpand)
         {
-          string expandPropertyName = propertyName.Substring("Expand".Length);
+          string expandPropertyName = propertyName.Substring("Expand".Length).Replace("_", ".");
           expandPropertyName = Regex.Replace(expandPropertyName, "([a-z])([A-Z])", "$1_$2").ToLower();
 
           if (isListMethod)
@@ -124,7 +129,7 @@ namespace Stripe
       if (!url.Contains("?"))
         token = "?";
 
-      return string.Format("{0}{1}{2}={3}", url, token, argument, HttpUtility.UrlEncode(value));
+      return $"{url}{token}{argument}={HttpUtility.UrlEncode(value)}";
     }
 
     private static string ApplyNestedObjectProperties(string newUrl, object nestedObject)
