@@ -11,6 +11,10 @@ namespace Stripe
     public bool ExpandCustomer { get; set; }
     public bool ExpandInvoice { get; set; }
     public bool ExpandRefunds_Data_BalanceTransaction { get; set; }
+    public bool ExpandDispute_Evidence_CustomerCommunication { get; set; }
+    public bool ExpandDispute_Evidence_Receipt{ get; set; }
+    public bool ExpandDispute_Evidence_ServiceDocumentation{ get; set; }
+    public bool ExpandDispute_Evidence_UncategorizedFile { get; set; }
 
     public virtual StripeCharge Create(StripeChargeCreateOptions createOptions, StripeRequestOptions requestOptions = null)
     {

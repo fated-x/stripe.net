@@ -8,9 +8,14 @@ namespace Stripe
 
     public bool ExpandCharge { get; set; }
     public bool ExpandBalanceTransaction { get; set; }
+    public bool ExpandEvidence_CancellationPolicy { get; set; }
     public bool ExpandEvidence_CustomerCommunication { get; set; }
+    public bool ExpandEvidence_DuplicateChargeDocumentation { get; set; }
+    public bool ExpandEvidence_CustomerSignature { get; set; }
     public bool ExpandEvidence_Receipt { get; set; }
+    public bool ExpandEvidence_RefundPolicy { get; set; }
     public bool ExpandEvidence_ServiceDocumentation { get; set; }
+    public bool ExpandEvidence_ShippingDocumentation { get; set; }
     public bool ExpandEvidence_UncategorizedFile { get; set; }
 
     public virtual IEnumerable<StripeDispute> List(StripeRequestOptions requestOptions = null)

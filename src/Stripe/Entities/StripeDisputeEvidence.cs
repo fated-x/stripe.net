@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Stripe.Infrastructure;
 
 namespace Stripe.Entities
 {
@@ -10,8 +11,21 @@ namespace Stripe.Entities
     [JsonProperty("billing_address")]
     public string BillingAddress { get; set; }
 
+    #region Expandable CancellationPolicy
+    public string CancellationPolicyId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload CancellationPolicy { get; set; }
+
     [JsonProperty("cancellation_policy")]
-    public string CancellationPolicy { get; set; }
+    internal object InternalCancellationPolicy
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => CancellationPolicyId = s, o => CancellationPolicy = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("cancellation_policy_disclosure")]
     public string CancellationPolicyDisclosure { get; set; }
@@ -19,8 +33,21 @@ namespace Stripe.Entities
     [JsonProperty("cancellation_rebuttal")]
     public string CancellationRebuttal { get; set; }
 
+    #region Expandable CustomerCommunication
+    public string CustomerCommunicationId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload CustomerCommunication { get; set; }
+
     [JsonProperty("customer_communication")]
-    public string CustomerCommunication { get; set; }
+    internal object InternalCustomerCommunication
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => CustomerCommunicationId = s, o => CustomerCommunication = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("customer_email_address")]
     public string CustomerEmailAddress { get; set; }
@@ -31,11 +58,37 @@ namespace Stripe.Entities
     [JsonProperty("customer_purchase_ip")]
     public string CustomerPurchaseIp { get; set; }
 
+    #region Expandable CustomerSignature
+    public string CustomerSignatureId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload CustomerSignature { get; set; }
+
     [JsonProperty("customer_signature")]
-    public string CustomerSignature { get; set; }
+    internal object InternalCustomerSignature
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => CustomerSignatureId = s, o => CustomerSignature = o);
+      }
+    }
+    #endregion
+
+    #region Expandable DuplicateChargeDocumentation
+    public string DuplicateChargeDocumentationId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload DuplicateChargeDocumentation { get; set; }
 
     [JsonProperty("duplicate_charge_documentation")]
-    public string DuplicateChargeDocumentation { get; set; }
+    internal object InternalDuplicateChargeDocumentation
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => DuplicateChargeDocumentationId = s, o => DuplicateChargeDocumentation = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("duplicate_charge_explanation")]
     public string DuplicateChargeExplanation { get; set; }
@@ -46,11 +99,37 @@ namespace Stripe.Entities
     [JsonProperty("product_description")]
     public string ProductDescription { get; set; }
 
-    [JsonProperty("receipt")]
-    public string Receipt { get; set; }
+    #region Expandable RefundPolicy
+    public string RefundPolicyId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload RefundPolicy { get; set; }
 
     [JsonProperty("refund_policy")]
-    public string RefundPolicy { get; set; }
+    internal object InternalRefundPolicy
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => RefundPolicyId = s, o => RefundPolicy = o);
+      }
+    }
+    #endregion
+
+    #region Expandable Receipt
+    public string ReceiptId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload Receipt { get; set; }
+
+    [JsonProperty("receipt")]
+    internal object InternalReceipt
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => ReceiptId = s, o => Receipt = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("refund_policy_disclosure")]
     public string RefundPolicyDisclosure { get; set; }
@@ -61,8 +140,21 @@ namespace Stripe.Entities
     [JsonProperty("service_date")]
     public string ServiceDate { get; set; }
 
+    #region Expandable ServiceDocumentation
+    public string ServiceDocumentationId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload ServiceDocumentation { get; set; }
+
     [JsonProperty("service_documentation")]
-    public string ServiceDocumentation { get; set; }
+    internal object InternalServiceDocumentation
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => ServiceDocumentationId = s, o => ServiceDocumentation = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("shipping_address")]
     public string ShippingAddress { get; set; }
@@ -73,14 +165,40 @@ namespace Stripe.Entities
     [JsonProperty("shipping_date")]
     public string ShippingDate { get; set; }
 
+    #region Expandable ShippingDocumentation
+    public string ShippingDocumentationId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload ShippingDocumentation { get; set; }
+
     [JsonProperty("shipping_documentation")]
-    public string ShippingDocumentation { get; set; }
+    internal object InternalShippingDocumentation
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => ShippingDocumentationId = s, o => ShippingDocumentation = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("shipping_tracking_number")]
     public string ShippingTrackingNumber { get; set; }
 
+    #region Expandable UncategorizedFile
+    public string UncategorizedFileId { get; set; }
+
+    [JsonIgnore]
+    public StripeFileUpload UncategorizedFile { get; set; }
+
     [JsonProperty("uncategorized_file")]
-    public string UncategorizedFile { get; set; }
+    internal object InternalUncategorizedFile
+    {
+      set
+      {
+        ExpandableProperty<StripeFileUpload>.Map(value, s => UncategorizedFileId = s, o => UncategorizedFile = o);
+      }
+    }
+    #endregion
 
     [JsonProperty("uncategorized_text")]
     public string UncategorizedText { get; set; }

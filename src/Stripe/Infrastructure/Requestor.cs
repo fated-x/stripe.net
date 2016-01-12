@@ -104,7 +104,7 @@ namespace Stripe
           var fileToUpload = (FileParameter)param.Value;
 
           // Add just the first part of this param, since we will write the file data directly to the Stream.
-          string header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{param.Key}\"; filename=\"{fileToUpload.FileName ?? param.Key}\";\r\nContent-Type: {fileToUpload.ContentType ?? "application/octet-stream"}\r\n\r\n";
+          string header = $"--{boundary}\r\nContent-Disposition: form-data; name=\"{param.Key}\"; filename=\"{fileToUpload.FileName ?? param.Key}\"\r\nContent-Type: application/octet-stream\r\n\r\n";
 
           formDataStream.Write(encoding.GetBytes(header), 0, encoding.GetByteCount(header));
 
