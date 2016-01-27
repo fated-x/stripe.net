@@ -13,6 +13,9 @@ namespace Stripe
     [JsonProperty("legal_entity[business_vat_id]")]
     public int? BusinessVatId { get; set; }
 
+    [JsonProperty("legal_entity[dob]")]
+    public StripeDobOptions Dob { get; set; }
+
     [JsonProperty("legal_entity[first_name]")]
     public string FirstName { get; set; }
 
@@ -31,8 +34,6 @@ namespace Stripe
     // AdditionalOwners (additional_owners)
 
     // Address (address)
-
-    // DateOfBirth (dob)
 
     // PersonalAddress (personal_address)
 

@@ -32,5 +32,17 @@
 
       return Mapper<StripeAccount>.MapFromJson(response);
     }
+
+    public virtual StripeAccount Update(string accountId, StripeAccountUpdateOptions updateOptions, StripeRequestOptions requestOptions = null)
+    {
+      requestOptions = SetupRequestOptions(requestOptions);
+
+      var url = $"{Urls.Account}/{accountId}";
+      url = this.ApplyAllParameters(updateOptions, url, false);
+
+      var response = Requestor.PostString(url, requestOptions);
+
+      return Mapper<StripeAccount>.MapFromJson(response);
+    }
   }
 }

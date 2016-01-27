@@ -139,9 +139,17 @@ namespace Stripe
         var val = prop.GetValue(nestedObject, null);
         if (val == null) continue;
 
-        foreach (var attr in prop.GetCustomAttributes(typeof(JsonPropertyAttribute), false).Cast<JsonPropertyAttribute>())
+        if (prop.PropertyType == typeof (StripeDobOptions))
         {
-          newUrl = ApplyParameterToUrl(newUrl, attr.PropertyName, val.ToString());
+          var stripeDobOptions = (StripeDobOptions) val;
+          newUrl = ApplyNestedObjectProperties(newUrl, stripeDobOptions);
+        }
+        else
+        {
+          foreach (var attr in prop.GetCustomAttributes(typeof (JsonPropertyAttribute), false).Cast<JsonPropertyAttribute>())
+          {
+            newUrl = ApplyParameterToUrl(newUrl, attr.PropertyName, val.ToString());
+          }
         }
       }
 

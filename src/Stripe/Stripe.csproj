@@ -72,6 +72,7 @@
     <Compile Include="Entities\StripeVerification.cs" />
     <Compile Include="Infrastructure\ExpandableProperty.cs" />
     <Compile Include="Services\Account\StripeAccountCreateOptions.cs" />
+    <Compile Include="Services\Account\StripeAccountUpdateOptions.cs" />
     <Compile Include="Services\Balance\StripeBalanceTransactionListOptions.cs" />
     <Compile Include="Services\Charges\StripeChargeUpdateOptions.cs" />
     <Compile Include="Services\Coupons\StripeCouponUpdateOptions.cs" />
@@ -82,6 +83,7 @@
     <Compile Include="Services\Refunds\StripeRefundService.cs" />
     <Compile Include="Services\Refunds\StripeRefundUpdateOptions.cs" />
     <Compile Include="Services\Invoices\StripeInvoiceCreateOptions.cs" />
+    <Compile Include="Services\StripeDobOptions.cs" />
     <Compile Include="Services\StripeEvidenceOptions.cs" />
     <Compile Include="Services\StripeExternalAccountOptions.cs" />
     <Compile Include="Services\StripeLegalEntityOptions.cs" />
