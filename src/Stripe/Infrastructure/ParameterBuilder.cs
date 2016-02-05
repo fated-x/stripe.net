@@ -144,6 +144,11 @@ namespace Stripe
           var stripeDobOptions = (StripeDobOptions) val;
           newUrl = ApplyNestedObjectProperties(newUrl, stripeDobOptions);
         }
+        else if (prop.PropertyType == typeof(StripeAddressOptions))
+        {
+          var stripeAddressOptions = (StripeAddressOptions)val;
+          newUrl = ApplyNestedObjectProperties(newUrl, stripeAddressOptions);
+        }
         else
         {
           foreach (var attr in prop.GetCustomAttributes(typeof (JsonPropertyAttribute), false).Cast<JsonPropertyAttribute>())

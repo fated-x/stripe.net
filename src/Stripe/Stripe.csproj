@@ -83,6 +83,7 @@
     <Compile Include="Services\Refunds\StripeRefundService.cs" />
     <Compile Include="Services\Refunds\StripeRefundUpdateOptions.cs" />
     <Compile Include="Services\Invoices\StripeInvoiceCreateOptions.cs" />
+    <Compile Include="Services\StripeAddressOptions.cs" />
     <Compile Include="Services\StripeDobOptions.cs" />
     <Compile Include="Services\StripeEvidenceOptions.cs" />
     <Compile Include="Services\StripeExternalAccountOptions.cs" />

@@ -4,6 +4,9 @@ namespace Stripe
 {
   public class StripeLegalEntityOptions
   {
+    [JsonProperty("legal_entity[address]")]
+    public StripeAddressOptions Address { get; set; }
+
     [JsonProperty("legal_entity[business_name]")]
     public string BusinessName { get; set; }
 
@@ -32,8 +35,6 @@ namespace Stripe
     public string Type { get; set; }
 
     // AdditionalOwners (additional_owners)
-
-    // Address (address)
 
     // PersonalAddress (personal_address)
 
