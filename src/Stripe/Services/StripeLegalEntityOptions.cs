@@ -29,7 +29,7 @@ namespace Stripe
     public int? PersonalIdNumber { get; set; }
 
     [JsonProperty("legal_entity[ssn_last_4]")]
-    public int? SsnLastFour { get; set; }
+    public string SsnLastFour { get; set; }
 
     [JsonProperty("legal_entity[type]")]
     public string Type { get; set; }
