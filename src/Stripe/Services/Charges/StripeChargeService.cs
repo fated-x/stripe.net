@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json.Linq;
 
 namespace Stripe
 {
@@ -54,13 +56,37 @@ namespace Stripe
     public virtual IEnumerable<StripeCharge> List(StripeChargeListOptions listOptions = null, StripeRequestOptions requestOptions = null)
     {
       requestOptions = SetupRequestOptions(requestOptions);
+      if (listOptions != null && listOptions.FetchAll)
+      {
+        listOptions.EndingBefore = null;
+        listOptions.StartingAfter = null;
+        listOptions.Limit = 100;
+      }
 
-      var url = Urls.Charges;
-      url = this.ApplyAllParameters(listOptions, url, true);
+      var charges = new List<StripeCharge>();
+      var hasMore = true;
+      do
+      {
+        var url = Urls.Charges;
+        url = this.ApplyAllParameters(listOptions, url, true);
 
-      var response = Requestor.GetString(url, requestOptions);
+        var response = Requestor.GetString(url, requestOptions);
+        charges.AddRange(Mapper<StripeCharge>.MapCollectionFromJson(response).ToList());
 
-      return Mapper<StripeCharge>.MapCollectionFromJson(response);
+        var jObject = JObject.Parse(response);
+        if ((bool)jObject.SelectToken("has_more") && listOptions != null && listOptions.FetchAll)
+        {
+          listOptions.EndingBefore = null;
+          listOptions.StartingAfter = charges.Last().ChargeID;
+          listOptions.Limit = 100;
+        }
+        else
+        {
+          hasMore = false;
+        }
+      } while (hasMore);
+
+        return charges;
     }
 
     public virtual StripeCharge Capture(string chargeId, int? captureAmount = null, int? applicationFee = null, StripeRequestOptions requestOptions = null)
